@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
 interface MainAppLayoutProps {
@@ -12,6 +12,14 @@ interface MainAppLayoutProps {
  * The layout uses flexbox to center its children both vertically and horizontally.
  */
 const MainAppLayout: React.FC<MainAppLayoutProps> = ({ children, className }) => {
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.add('dark');
+    return () => {
+      root.classList.remove('dark');
+    };
+  }, []);
+
   return (
     <main
       className={cn(
